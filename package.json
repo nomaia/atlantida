@@ -1,0 +1,8 @@
+{
+  "name": "atlantida-votacao",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "VR CODE ARENA | ATLÄNTIDA - votação do público",
+  "engines": { "node": ">=18" }
+}
