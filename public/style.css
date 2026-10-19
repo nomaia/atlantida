@@ -194,7 +194,7 @@ body {
 .total { font-family: var(--fonte-titulo); font-size: 3rem; color: var(--espuma); line-height: 1; }
 .controles { display: grid; gap: 10px; }
 
-.tanques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; height: clamp(380px, calc(100vh - 290px), 760px); }
+.tanques { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; height: clamp(340px, calc(100vh - 400px), 720px); }
 @media (max-width: 600px) { .tanques { gap: 10px; height: 420px; } }
 .tanque { --cor: var(--bio); display: flex; flex-direction: column; gap: 12px; align-items: stretch; }
 .tubo {
@@ -240,3 +240,25 @@ body {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* ---------- endereço gigante no telão ---------- */
+.placar { padding-top: 20px; }
+.placar .topo { margin-bottom: 14px; }
+.placar .titulo { font-size: clamp(2rem, 5vw, 3.4rem); margin: 8px 0 0; }
+.acesse {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  margin: 0 0 22px; padding: 18px 24px; border-radius: var(--raio);
+  background: linear-gradient(180deg, rgba(94,242,224,.14), rgba(94,242,224,.04));
+  border: 2px solid rgba(94,242,224,.55);
+  box-shadow: 0 0 50px rgba(94,242,224,.18), inset 0 0 40px rgba(94,242,224,.06);
+  text-align: center;
+}
+.acesse-rotulo { font-size: clamp(.9rem, 1.6vw, 1.3rem); letter-spacing: .3em; text-transform: uppercase; color: var(--texto-suave); }
+.acesse-url {
+  font-family: var(--fonte); font-weight: 600; line-height: 1.1; word-break: break-all;
+  font-size: clamp(2rem, 6.2vw, 5.6rem); color: var(--espuma);
+  text-shadow: 0 0 30px rgba(94,242,224,.55);
+}
+.url-voto { color: var(--texto-suave); }
+/* números legíveis (a fonte decorativa desenha o 1 como "I") */
+.total, .valor { font-family: var(--fonte); font-weight: 600; }
