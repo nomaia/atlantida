@@ -13,7 +13,7 @@
   <script src="/qrcode.js"></script>
 </head>
 <body>
-  <main class="conteudo" style="max-width:1280px">
+  <main class="conteudo placar" style="max-width:1400px">
     <header class="topo">
       <span class="selo">VR CODE ARENA · Placar</span>
       <h1 class="titulo">ATLÄNTIDA</h1>
@@ -31,6 +31,10 @@
 
     <!-- painel -->
     <section id="painel" class="oculto">
+      <div class="acesse">
+        <span class="acesse-rotulo">Vote pelo celular · acesse</span>
+        <span class="acesse-url" id="urlGrande"></span>
+      </div>
       <div id="alertaDev" class="alerta-dev oculto">
         Modo de teste: banco de dados não configurado. Os votos ficam só na memória e podem sumir.
         Conecte o Upstash Redis na Vercel (veja o README).
@@ -38,7 +42,7 @@
       <div class="painel">
         <aside class="lateral">
           <div class="bloco">
-            <h3>Vote pelo celular</h3>
+            <h3>QR Code</h3>
             <div class="qr" id="qr"></div>
             <div class="url-voto" id="urlVoto"></div>
           </div>
@@ -78,7 +82,9 @@
 
     // QR code com o link da página de votação
     const urlVoto = location.origin + '/';
-    $('#urlVoto').textContent = urlVoto.replace(/^https?:\/\//, '');
+    const urlCurta = location.host;
+    $('#urlVoto').textContent = 'ou aponte a câmera para o código';
+    $('#urlGrande').textContent = urlCurta;
     try {
       const qr = qrcode(0, 'M');
       qr.addData(urlVoto);
