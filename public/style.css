@@ -262,3 +262,27 @@ body {
 .url-voto { color: var(--texto-suave); }
 /* números legíveis (a fonte decorativa desenha o 1 como "I") */
 .total, .valor { font-family: var(--fonte); font-weight: 600; }
+
+/* ---------- nomes dos times em destaque ---------- */
+/* página de votação */
+.card { text-align: center; align-items: center; }
+.card h2 {
+  font-size: clamp(2rem, 6vw, 2.8rem); font-weight: 700; letter-spacing: -.01em; line-height: 1.05;
+  color: color-mix(in srgb, var(--cor) 40%, white);
+  text-shadow: 0 0 24px color-mix(in srgb, var(--cor) 60%, transparent);
+  margin: 4px 0 6px;
+}
+.card .numero { font-size: 2rem; }
+.card p:empty { display: none; }
+.card .acoes { justify-content: center; width: 100%; margin-top: auto; }
+.card .acoes > span:empty { display: none; }
+
+/* placar */
+.tanque .nome b {
+  font-size: clamp(1.4rem, 3.6vw, 2.6rem); font-weight: 700; line-height: 1.1; margin-top: 2px;
+  color: color-mix(in srgb, var(--cor) 40%, white);
+  text-shadow: 0 0 22px color-mix(in srgb, var(--cor) 60%, transparent);
+}
+.tanque .nome span { font-size: clamp(.7rem, 1.1vw, .9rem); }
+.tanques { height: clamp(320px, calc(100vh - 440px), 700px); }
+@media (max-width: 600px) { .tanques { height: 440px; } }
