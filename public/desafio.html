@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#031c33" />
+  <title>CODE DROP · ATLÄNTIDA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔱</text></svg>" />
+  <style>
+    /* ---------- tela única, sem rolagem (telão) ---------- */
+    html, body { height: 100%; }
+    .tela {
+      position: relative; z-index: 1; height: 100vh; max-width: 1760px; margin: 0 auto;
+      padding: 3vh 3vw; display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 3vw; align-items: center;
+    }
+    @media (min-width: 901px) { body { overflow: hidden; } }
+    @media (max-width: 900px) { .tela { height: auto; grid-template-columns: 1fr; padding: 24px 16px 48px; } }
+
+    /* ---------- coluna do enunciado ---------- */
+    .chamada { display: flex; flex-direction: column; gap: 2.2vh; }
+    .chamada .selo { align-self: flex-start; }
+    .chamada .marca { font-family: var(--fonte-titulo); color: var(--bio); font-size: clamp(1.1rem, 2.4vh, 1.8rem); letter-spacing: .08em; }
+    .missao {
+      font-family: var(--fonte); font-weight: 600; line-height: 1;
+      font-size: clamp(2.4rem, 8.5vh, 6.4rem); color: var(--espuma);
+      text-shadow: 0 0 34px rgba(94, 242, 224, .45);
+    }
+    .missao small {
+      display: block; margin-bottom: 1.4vh; font-size: clamp(.8rem, 1.8vh, 1.2rem);
+      letter-spacing: .32em; text-transform: uppercase; color: var(--bio); font-weight: 500; text-shadow: none;
+    }
+    .texto { font-size: clamp(1.05rem, 3vh, 2rem); line-height: 1.42; }
+    .oceanos { display: flex; flex-wrap: wrap; gap: 1vh .6vw; }
+    .oceano {
+      --cor: var(--bio);
+      padding: .9vh 1.1vw; border-radius: 999px; font-weight: 600; font-size: clamp(.9rem, 2.2vh, 1.4rem);
+      color: var(--espuma); border: 1px solid color-mix(in srgb, var(--cor) 70%, transparent);
+      background: color-mix(in srgb, var(--cor) 16%, transparent);
+      box-shadow: 0 0 22px color-mix(in srgb, var(--cor) 25%, transparent);
+    }
+    .provocacao { color: var(--bio); font-style: italic; font-size: clamp(1rem, 2.7vh, 1.8rem); line-height: 1.4; }
+    .valendo {
+      font-family: var(--fonte-titulo); font-size: clamp(2rem, 6vh, 4.4rem); line-height: 1;
+      color: var(--coral); text-shadow: 0 0 26px rgba(255, 138, 112, .5);
+    }
+
+    /* ---------- coluna da inspiração ---------- */
+    .inspiracao { display: flex; flex-direction: column; gap: 1.4vh; min-height: 0; }
+    .inspiracao .rotulo {
+      font-size: clamp(.8rem, 1.8vh, 1.2rem); letter-spacing: .3em; text-transform: uppercase; color: var(--texto-suave);
+    }
+    .inspiracao .rotulo b { color: var(--bio); font-weight: 500; }
+
+    .janela {
+      border-radius: 18px; overflow: hidden; border: 1px solid var(--vidro-borda);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, .55), 0 0 60px rgba(94, 242, 224, .12);
+      background: #04182b;
+    }
+    .barra {
+      display: flex; align-items: center; gap: 8px; padding: 1.1vh 14px;
+      background: rgba(255, 255, 255, .06); border-bottom: 1px solid var(--vidro-borda);
+    }
+    .barra i { width: 11px; height: 11px; border-radius: 50%; background: #ff6b6b; opacity: .8; }
+    .barra i:nth-child(2) { background: #ffd166; }
+    .barra i:nth-child(3) { background: #5ef2e0; }
+    .barra span {
+      margin-left: 10px; flex: 1; padding: .5vh 12px; border-radius: 8px; background: rgba(0, 0, 0, .3);
+      color: var(--texto-suave); font-size: clamp(.7rem, 1.5vh, 1rem);
+    }
+
+    /* mini portal de exemplo */
+    .portal { padding: 2.4vh 2vw 2.8vh; background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(94, 242, 224, .18), transparent 70%),
+      linear-gradient(180deg, #0a3550, #041a2e 60%, #020f1c); }
+    .p-nav { display: flex; align-items: center; gap: 1.4vw; margin-bottom: 2.6vh; font-size: clamp(.65rem, 1.45vh, .95rem); color: var(--texto-suave); }
+    .p-nav .logo { font-family: var(--fonte-titulo); color: var(--bio); font-size: 1.25em; margin-right: auto; }
+    .p-nav .ativo { color: var(--espuma); border-bottom: 2px solid var(--bio); padding-bottom: 2px; }
+    .p-cab { text-align: center; margin-bottom: 2.4vh; }
+    .p-cab small { display: block; letter-spacing: .3em; text-transform: uppercase; color: var(--bio); font-size: clamp(.6rem, 1.3vh, .9rem); }
+    .p-cab h3 { font-family: var(--fonte-titulo); font-size: clamp(1.3rem, 4vh, 2.8rem); color: var(--espuma); margin: .6vh 0; }
+    .p-cab p { color: var(--texto-suave); font-size: clamp(.75rem, 1.75vh, 1.15rem); max-width: 60ch; margin: 0 auto; }
+
+    .p-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: .9vw; }
+    @media (max-width: 900px) { .p-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+    .p-card {
+      --cor: var(--bio);
+      position: relative; overflow: hidden; border-radius: 14px; padding: 1.6vh .9vw 1.8vh;
+      background: linear-gradient(180deg, color-mix(in srgb, var(--cor) 22%, transparent), rgba(255, 255, 255, .03) 55%);
+      border: 1px solid color-mix(in srgb, var(--cor) 45%, transparent);
+      display: flex; flex-direction: column; gap: .9vh;
+    }
+    .p-card .ico { font-size: clamp(1.1rem, 3vh, 2rem); line-height: 1; }
+    .p-card h4 { font-size: clamp(.85rem, 2.1vh, 1.35rem); color: var(--espuma); }
+    .p-dado { font-size: clamp(.6rem, 1.35vh, .9rem); color: var(--texto-suave); line-height: 1.3; }
+    .p-dado b { display: block; color: var(--espuma); font-size: 1.3em; }
+    .p-prof { height: 6px; border-radius: 4px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+    .p-prof span { display: block; height: 100%; background: var(--cor); box-shadow: 0 0 10px var(--cor); }
+    .p-card p { font-size: clamp(.6rem, 1.4vh, .92rem); line-height: 1.4; color: var(--texto); opacity: .85; font-style: italic; }
+    .p-selo {
+      position: absolute; top: 1vh; right: .6vw; font-size: clamp(.5rem, 1.1vh, .75rem); font-weight: 600;
+      padding: 2px 7px; border-radius: 999px; background: var(--cor); color: var(--abismo); text-transform: uppercase; letter-spacing: .05em;
+    }
+    .nota { color: var(--texto-suave); font-size: clamp(.75rem, 1.7vh, 1.1rem); text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="tela">
+    <!-- ===== enunciado ===== -->
+    <section class="chamada">
+      <span class="selo">VR CODE ARENA · CODE DROP</span>
+      <span class="marca">ATLÄNTIDA</span>
+      <h1 class="missao"><small>Novo desafio</small>Os Cinco Oceanos</h1>
+
+      <p class="texto">Os moradores de ATLÄNTIDA precisam conhecer o mundo além das cúpulas. Criem no portal de vocês uma nova seção que apresente os cinco oceanos da Terra:</p>
+
+      <div class="oceanos" aria-label="Os cinco oceanos">
+        <span class="oceano" style="--cor:#22d3ee">Pacífico</span>
+        <span class="oceano" style="--cor:#3b82f6">Atlântico</span>
+        <span class="oceano" style="--cor:#ff8a70">Índico</span>
+        <span class="oceano" style="--cor:#a78bfa">Antártico</span>
+        <span class="oceano" style="--cor:#e6fbff">Ártico</span>
+      </div>
+
+      <p class="provocacao">Não queremos só cards com dados. Queremos ver os oceanos pelos olhos da cidade de vocês!</p>
+      <div class="valendo">Valendo!</div>
+    </section>
+
+    <!-- ===== inspiração ===== -->
+    <section class="inspiracao" aria-label="Inspiração">
+      <div class="rotulo"><b>Inspiração</b> · um exemplo do que dá para fazer</div>
+
+      <div class="janela">
+        <div class="barra"><i></i><i></i><i></i><span>portal-da-equipe.vercel.app/oceanos</span></div>
+
+        <div class="portal">
+          <nav class="p-nav">
+            <span class="logo">Portal Abissal</span>
+            <span>Início</span><span>O Mundo</span><span>Habitantes</span><span>Mural</span>
+            <span class="ativo">Oceanos</span><span>Fale com o Portal</span>
+          </nav>
+
+          <header class="p-cab">
+            <small>Além das cúpulas</small>
+            <h3>Os Cinco Oceanos</h3>
+            <p>Cada oceano é uma rota, um recurso ou um perigo para quem vive lá embaixo. Conheça as águas que cercam a nossa cidade.</p>
+          </header>
+
+          <div class="p-cards">
+            <article class="p-card" style="--cor:#22d3ee">
+              <span class="p-selo">Maior</span>
+              <span class="ico">🌊</span>
+              <h4>Pacífico</h4>
+              <div class="p-dado"><b>165 mi km²</b>área aproximada</div>
+              <div class="p-dado"><b>10.900 m</b>profundidade máxima</div>
+              <div class="p-prof"><span style="width:100%"></span></div>
+              <p>"Nossas rotas mais longas cruzam o Pacífico. São dias de viagem entre cúpulas."</p>
+            </article>
+            <article class="p-card" style="--cor:#3b82f6">
+              <span class="ico">⚓</span>
+              <h4>Atlântico</h4>
+              <div class="p-dado"><b>106 mi km²</b>área aproximada</div>
+              <div class="p-dado"><b>8.400 m</b>profundidade máxima</div>
+              <div class="p-prof"><span style="width:77%"></span></div>
+              <p>"Aqui ficam os destroços dos navios da superfície, nosso maior arquivo histórico."</p>
+            </article>
+            <article class="p-card" style="--cor:#ff8a70">
+              <span class="p-selo">Quente</span>
+              <span class="ico">🪸</span>
+              <h4>Índico</h4>
+              <div class="p-dado"><b>70 mi km²</b>área aproximada</div>
+              <div class="p-dado"><b>7.200 m</b>profundidade máxima</div>
+              <div class="p-prof"><span style="width:66%"></span></div>
+              <p>"Águas quentes onde a cidade cultiva os corais que viram alimento e remédio."</p>
+            </article>
+            <article class="p-card" style="--cor:#a78bfa">
+              <span class="ico">🧭</span>
+              <h4>Antártico</h4>
+              <div class="p-dado"><b>21 mi km²</b>área aproximada</div>
+              <div class="p-dado"><b>7.400 m</b>profundidade máxima</div>
+              <div class="p-prof"><span style="width:68%"></span></div>
+              <p>"Correntes geladas giram ao redor da Antártida. Só pilotos experientes passam."</p>
+            </article>
+            <article class="p-card" style="--cor:#e6fbff">
+              <span class="p-selo">Menor</span>
+              <span class="ico">🧊</span>
+              <h4>Ártico</h4>
+              <div class="p-dado"><b>14 mi km²</b>área aproximada</div>
+              <div class="p-dado"><b>5.500 m</b>profundidade máxima</div>
+              <div class="p-prof"><span style="width:50%"></span></div>
+              <p>"Sob o gelo fica a estação mais isolada da rede. O sinal do portal quase não chega."</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <p class="nota">Dados reais, olhar de ATLÄNTIDA. O tempero é de vocês.</p>
+    </section>
+  </main>
+
+  <script src="/mar.js"></script>
+</body>
+</html>
